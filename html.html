@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        
+    body {
+        font-family: 'Poppins', sans-serif;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    .container {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .section {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        flex: 1;
+        min-width: 300px;
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .section:hover {
+        transform: translateY(-5px);
+    }
+
+    h2 {
+        color: #2c3e50;
+        margin: 0 0 20px 0;
+        padding: 15px 20px;
+        background: linear-gradient(45deg, #6b48ff, #00a8ff);
+        border-radius: 8px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    h2::before {
+        content: '💵';
+        font-size: 1.2em;
+    }
+
+    .expenses-section h2::before {
+        content: '📉';
+    }
+
+    .investment-section h2::before {
+        content: '📈';
+    }
+
+    .input-group {
+        margin: 20px 0;
+        position: relative;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #4a5568;
+        font-weight: 500;
+        font-size: 0.9em;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        background: #f8fafc;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #6b48ff;
+        box-shadow: 0 0 0 3px rgba(107, 72, 255, 0.1);
+        background: white;
+    }
+
+    input:hover {
+        border-color: #a0aec0;
+    }
+
+    .total {
+        font-weight: 700;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.1em;
+    }
+
+    #incomeTotal {
+        color: #2ecc71;
+        background: linear-gradient(45deg, #e8f5e9, #c8e6c9);
+    }
+
+    #expensesTotal {
+        color: #e74c3c;
+        background: linear-gradient(45deg, #ffebee, #ffcdd2);
+    }
+
+    #investmentTotal {
+        color: #3498db;
+        background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+    }
+
+    #creativeTotal {
+        font-size: 1.4em;
+        margin-top: 30px;
+        padding: 25px;
+        background: linear-gradient(45deg, #6b48ff, #00a8ff);
+        border-radius: 15px;
+        color: white;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+
+    select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        background: #f8fafc;
+        font-size: 1em;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+    }
+
+    .wealth-item {
+        padding: 15px;
+        margin: 10px 0;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .emoji {
+        font-size: 1.5em;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    #creativeTotal div {
+        animation: fadeIn 0.5s ease forwards;
+    }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #666;
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .total {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #2c3e50;
+        }
+
+        #creativeTotal {
+            font-size: 1.5em;
+            color: #27ae60;
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Income Section -->
+        <div class="section">
+            <h2>Income Calculator</h2>
+            <div class="input-group">
+                <label>Hourly Pay ($):</label>
+                <input type="number" id="hourlyPay" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>Monthly Hours:</label>
+                <input type="number" id="monthlyHours">
+            </div>
+            <div class="total" id="incomeTotal">Monthly Income: $0</div>
+        </div>
+
+        <!-- Expenses Section -->
+        <div class="section">
+            <h2>Monthly Expenses</h2>
+            <div class="input-group">
+                <label>Rent ($):</label>
+                <input type="number" id="rent">
+            </div>
+            <div class="input-group">
+                <label>Groceries ($):</label>
+                <input type="number" id="groceries">
+            </div>
+            <div class="input-group">
+                <label>Mobile Bill ($):</label>
+                <input type="number" id="mobileBill">
+            </div>
+            <div class="input-group">
+                <label>Transportation ($):</label>
+                <input type="number" id="transportation">
+            </div>
+            <div class="input-group">
+                <label>Other ($):</label>
+                <input type="number" id="other">
+            </div>
+            <div class="total" id="expensesTotal">Total Expenses: $0</div>
+        </div>
+
+        <!-- Investing Section -->
+        <div class="section">
+            <h2>Investment Plan</h2>
+            <div class="input-group">
+                <label>Monthly Investment ($):</label>
+                <input type="number" id="monthlyInvest">
+            </div>
+            <div class="input-group">
+                <label>Duration:</label>
+                <input type="number" id="investmentDuration">
+                <select id="durationType">
+                    <option value="years">Years</option>
+                    <option value="months">Months</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Predicted Growth (%):</label>
+                <input type="number" id="growthPercentage" step="0.1">
+            </div>
+            <div class="total" id="investmentTotal">Total with Growth: $0</div>
+        </div>
+    </div>
+
+    <div id="creativeTotal"></div>
+
+    <script>
+        // Income Calculation
+        function calculateIncome() {
+            const hourlyPay = parseFloat(document.getElementById('hourlyPay').value) || 0;
+            const monthlyHours = parseFloat(document.getElementById('monthlyHours').value) || 0;
+            const total = hourlyPay * monthlyHours;
+            document.getElementById('incomeTotal').textContent = `Monthly Income: $${total.toFixed(2)}`;
+            return total;
+        }
+
+        // Expenses Calculation
+        function calculateExpenses() {
+            const expenses = [
+                'rent', 'groceries', 'mobileBill', 'transportation', 'other'
+            ].map(id => parseFloat(document.getElementById(id).value) || 0);
+            
+            const total = expenses.reduce((sum, val) => sum + val, 0);
+            document.getElementById('expensesTotal').textContent = `Total Expenses: $${total.toFixed(2)}`;
+            return total;
+        }
+
+        // Investment Calculation
+        function calculateInvestment() {
+            const monthlyInvest = parseFloat(document.getElementById('monthlyInvest').value) || 0;
+            const duration = parseFloat(document.getElementById('investmentDuration').value) || 0;
+            const durationType = document.getElementById('durationType').value;
+            const growth = parseFloat(document.getElementById('growthPercentage').value) || 0;
+
+            const months = durationType === 'years' ? duration * 12 : duration;
+            const totalInvested = monthlyInvest * months;
+            const growthAmount = totalInvested * (growth / 100);
+            const totalWithGrowth = totalInvested + growthAmount;
+
+            document.getElementById('investmentTotal').textContent = 
+                `Total with Growth: $${totalWithGrowth.toFixed(2)}`;
+            return totalInvested;
+        }
+
+        // Savings and Creative Calculation
+        function updateSavings() {
+            const income = calculateIncome();
+            const expenses = calculateExpenses();
+            const investment = calculateInvestment();
+            
+            const saving = income - expenses - investment;
+            const years = parseFloat(document.getElementById('investmentDuration').value) || 0;
+            const creativeTotal = saving * years;
+
+            let message = `Annual Savings Potential: $${creativeTotal.toFixed(2)} - `;
+            if (creativeTotal > 100000) message += "🚀 You're on track to financial freedom!";
+            else if (creativeTotal > 50000) message += "👍 Great saving potential!";
+            else if (creativeTotal > 0) message += "💪 Keep going!";
+            else message += "⚠️ Review your financial plan";
+
+            document.getElementById('creativeTotal').textContent = message;
+        }
+
+        // Add event listeners to all inputs
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', updateSavings);
+        });
+
+        // Initial calculation
+        updateSavings();
+        
+        // Modified Investment Calculation
+        function calculateInvestment() {
+            const monthlyInvest = parseFloat(document.getElementById('monthlyInvest').value) || 0;
+            const duration = parseFloat(document.getElementById('investmentDuration').value) || 0;
+            const durationType = document.getElementById('durationType').value;
+            const growth = parseFloat(document.getElementById('growthPercentage').value) || 0;
+
+            const months = durationType === 'years' ? duration * 12 : duration;
+            const totalInvested = monthlyInvest * months;
+            const growthAmount = totalInvested * (growth / 100);
+            const totalWithGrowth = totalInvested + growthAmount;
+
+            document.getElementById('investmentTotal').textContent = 
+                `Total with Growth: $${totalWithGrowth.toFixed(2)}`;
+            
+            return { 
+                monthlyInvest,
+                totalInvested,
+                totalWithGrowth,
+                months
+            };
+        }
+
+        // Modified Savings Calculation
+        function updateSavings() {
+            const income = calculateIncome();
+            const expenses = calculateExpenses();
+            const investment = calculateInvestment();
+            
+            // Monthly calculations
+            const monthlySaving = income - expenses - investment.monthlyInvest;
+            const totalSaving = monthlySaving * investment.months;
+            
+            // Totals calculation
+            const combinedWealth = totalSaving + investment.totalWithGrowth;
+            
+            // Formatting numbers
+            const formattedSaving = totalSaving.toFixed(2);
+            const formattedInvest = investment.totalWithGrowth.toFixed(2);
+            const formattedCombined = combinedWealth.toFixed(2);
+
+            // Creative message construction
+            let message = `
+                <div style="color: #2c3e50;">
+                    <div>💰 Total Savings: $${formattedSaving}</div>
+                    <div>📈 Investments with Growth: $${formattedInvest}</div>
+                    <div style="margin-top: 10px; font-size: 1.2em; color: #27ae60;">
+                        🚀 Combined Wealth Potential: $${formattedCombined}
+                    </div>
+                </div>
+            `;
+
+            // Add motivational message
+            if (combinedWealth > 1000000) {
+                message += "<div style='margin-top: 15px; color: #e67e22;'>🌟 Future Millionaire Alert!</div>";
+            } else if (combinedWealth > 500000) {
+                message += "<div style='margin-top: 15px; color: #2980b9;'>🎯 Amazing Financial Progress!</div>";
+            } else if (combinedWealth > 0) {
+                message += "<div style='margin-top: 15px; color: #2ecc71;'>👍 You're Building Wealth!</div>";
+            } else {
+                message += "<div style='margin-top: 15px; color: #e74c3c;'>⚠️ Review Your Financial Plan</div>";
+            }
+
+            document.getElementById('creativeTotal').innerHTML = message;
+        }
+
+        // Add event listeners to all inputs
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', updateSavings);
+        });
+
+        // Initial calculation
+        updateSavings();
+    </script>
+</body>
+</html>
